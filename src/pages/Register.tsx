@@ -3,80 +3,56 @@ import styled from "styled-components";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const Background = styled.div`
+const Wrapper = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  max-width: 600px;
+  text-align: center;
 `;
 
 const CardContainer = styled.div`
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
+  background: #ffffff;
   border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 242, 254, 0.5);
-  width: 600px;
+  box-shadow: 0 5px 15px rgba(0.3, 0.3, 0.3, 0.3);
   padding: 40px;
-  text-align: center;
-  position: relative;
 `;
 
 const Title = styled.h1`
   font-weight: bold;
   font-size: 26px;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 20px;
 `;
 
 const StyledInput = styled(Form.Control)`
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: none !important;
+  border: 1px solid #ccc !important;
   border-radius: 10px !important;
   padding: 12px 15px;
-  color: white !important;
   font-size: 14px;
   outline: none;
+  color: #000;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  &:focus {
-    background: rgba(255, 255, 255, 0.3) !important;
-    outline: 2px solid #ffffff !important;
+    color: #666;
   }
 `;
 
 const StyledSelect = styled(Form.Select)`
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: none !important;
+  border: 1px solid #ccc !important;
   border-radius: 10px !important;
   padding: 12px 15px;
-  color: white !important;
   font-size: 14px;
   outline: none;
-  appearance: none;
-
-  option {
-    background: #764ba2;
-    color: white;
-  }
-
-  &:focus {
-    background: rgba(255, 255, 255, 0.3) !important;
-    outline: 2px solid #ffffff !important;
-  }
+  color: #000;
 `;
 
 const Register: React.FC = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   return (
-    <Background>
+    <Wrapper>
       <CardContainer>
         <Title>Register</Title>
         <Container>
@@ -137,15 +113,15 @@ const Register: React.FC = () => {
               </StyledSelect>
             </Col>
           </Row>
-          <Button className="w-100 mt-3" style={{ borderRadius: "25px", background: "linear-gradient(135deg, #4facfe, #00f2fe)", border: "none", padding: "12px" }}>
+          <Button className="w-100 mt-3" variant="primary" style={{ borderRadius: "25px", padding: "12px" }}>
             Register
           </Button>
-          <p className="mt-3 text-white" style={{ cursor: "pointer" }} onClick={() => navigate("/signin")}>
+          <p className="mt-3 text-dark" style={{ cursor: "pointer" }} onClick={() => navigate("/signin")}>
             Already have an account? <span style={{ textDecoration: "underline" }}>Login</span>
           </p>
         </Container>
       </CardContainer>
-    </Background>
+    </Wrapper>
   );
 };
 
