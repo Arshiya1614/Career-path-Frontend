@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Logo from "../assets/Logo.svg";
+
 
 const Wrapper = styled.div`
   position: absolute;
@@ -14,39 +16,73 @@ const Wrapper = styled.div`
 `;
 
 const CardContainer = styled.div`
-  background: #ffffff;
+  background: black;
   border-radius: 15px;
+  border: 1px solid #99A7F1;
   box-shadow: 0 5px 15px rgba(0.3, 0.3, 0.3, 0.3);
   padding: 40px;
+  color: white;
 `;
 
 const Title = styled.h1`
   font-weight: bold;
   font-size: 26px;
-  color: #000000;
+  color: #99A7F1;
   margin-bottom: 20px;
 `;
 
 const StyledInput = styled(Form.Control)`
-  border: 1px solid #ccc !important;
+  background: black !important;  /* Ensure background stays black */
+  border: 1px solid #99A7F1 !important;
   border-radius: 10px !important;
   padding: 12px 15px;
   font-size: 14px;
   outline: none;
-  color: #000;
+  color: #99A7F1;
 
   &::placeholder {
-    color: #666;
+    color: #888;
+  }
+
+  &:focus {
+    background: black !important;  /* Fix background on focus */
+    border-color: #99A7F1 !important;
+    box-shadow: none !important; /* Remove Bootstrap's default focus shadow */
+    color: #99A7F1;
   }
 `;
 
+
 const StyledSelect = styled(Form.Select)`
-  border: 1px solid #ccc !important;
+  background: black;
+  border: 1px solid #99A7F1 !important;
   border-radius: 10px !important;
   padding: 12px 15px;
   font-size: 14px;
   outline: none;
-  color: #000;
+  color: #99A7F1;
+`;
+
+const Button = styled.button`
+  border-radius: 25px;
+  border: none;
+  background:#99A7F1;
+  color: #ffffff;
+  padding: 12px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background:none;
+    border:1px solid #99A7F1;
+  }
+`;
+
+const LogoImage = styled.img`
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  margin-bottom: 10px;
 `;
 
 const Register: React.FC = () => {
@@ -54,6 +90,7 @@ const Register: React.FC = () => {
   return (
     <Wrapper>
       <CardContainer>
+      <LogoImage src={Logo} alt="Logo" />
         <Title>Register</Title>
         <Container>
           <Row>
@@ -113,10 +150,10 @@ const Register: React.FC = () => {
               </StyledSelect>
             </Col>
           </Row>
-          <Button className="w-100 mt-3" variant="primary" style={{ borderRadius: "25px", padding: "12px" }}>
+          <Button className="w-100 mt-3">
             Register
           </Button>
-          <p className="mt-3 text-dark" style={{ cursor: "pointer" }} onClick={() => navigate("/signin")}>
+          <p className="mt-3 text-light" style={{ cursor: "pointer" }} onClick={() => navigate("/signin")}>
             Already have an account? <span style={{ textDecoration: "underline" }}>Login</span>
           </p>
         </Container>

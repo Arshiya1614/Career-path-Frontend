@@ -9,8 +9,7 @@ const GuidesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: black;
-
+  color: white;
 `;
 
 const GuideList = styled.ul`

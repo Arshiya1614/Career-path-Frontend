@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { FaFacebookF, FaGoogle, FaLinkedinIn } from "react-icons/fa";
+import Logo from "../assets/Logo.svg";
+
 
 const Container = styled.div`
-  background: #ffffff;
+  background: black;
   border-radius: 10px;
+  border : 1px solid #99A7F1;
   box-shadow: 0 5px 15px rgba(0.3, 0.3, 0.3, 0.3);
   width: 400px;
   padding: 40px;
@@ -19,18 +22,18 @@ const Container = styled.div`
 const Title = styled.h1`
   font-weight: bold;
   font-size: 24px;
-  color: #000000;
+  color:#99A7F1;
   margin-bottom: 20px;
 `;
 
 const Input = styled.input`
-  background: #f5f5f5;
-  border: 1px solid #ddd;
+  background: black;
+  border: 1px solid #99A7F1;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
   width: 100%;
-  color: #000000;
+  color: #99A7F1;
   font-size: 14px;
   outline: none;
 
@@ -39,7 +42,7 @@ const Input = styled.input`
   }
 
   &:focus {
-    border-color: #007bff;
+    border-color: #99A7F1;
   }
 `;
 
@@ -47,7 +50,7 @@ const ForgotPassword = styled.a`
   display: block;
   text-align: right;
   font-size: 12px;
-  color: #000;
+  color:white;
   text-decoration: none;
   margin-bottom: 10px;
   cursor: pointer;
@@ -60,22 +63,21 @@ const ForgotPassword = styled.a`
 const Button = styled.button`
   border-radius: 25px;
   border: none;
-  background: #007bff;
+  background:#99A7F1;
   color: #ffffff;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 10px 20px;
+  padding: 10px 25px;
   margin-top: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background: #0056b3;
+    background:none;
+    border:1px solid #99A7F1;
   }
 `;
 
 const DividerText = styled.p`
-  color: #000;
+  color: white;
   font-size: 14px;
   margin: 20px 0 10px;
 `;
@@ -90,24 +92,32 @@ const SocialButton = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid #000;
+  border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
-  color: #000;
+  background: black;
+  color: white;
   font-size: 18px;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background: #f0f0f0;
+    background: black;
+    border: 1px solid #99A7F1;
+    color: #99A7F1;
   }
+`;
+const LogoImage = styled.img`
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  margin-bottom: 10px;
 `;
 
 const SignIn: React.FC = () => {
   return (
     <Container>
+      <LogoImage src={Logo} alt="Logo" />
       <Title>Sign In</Title>
       <Input type="email" placeholder="Email" />
       <Input type="password" placeholder="Password" />
