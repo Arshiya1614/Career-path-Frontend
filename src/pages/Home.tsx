@@ -1,45 +1,48 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import MyNavbar from "../Components/Navbar";
 import styled from "styled-components";
+import { RefObject } from 'react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Guides from "../Components/Guides";
+import Footer from "../Components/Footer";
 
 // Styled Home Page Background
 const HomeBackground = styled.div`
-  min-height: 100%;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  min-height: 100vh; /* Full screen height */
+  background: black; /* Set background to black */
+  color: white; /* Ensures all text is visible */
   padding-bottom: 50px;
 `;
 
-
 const ContentSection = styled.div`
   text-align: center;
-  margin-top: 30px;
+  margin-top: 50px;
   padding: 20px;
-  margin-bottom : 40px;
+  margin-bottom : 50px;
 `;
 
 const Title = styled.h2`
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #99A7F1; 
 `;
 
 const Description = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
-  color: black;
+  color: white;
 `;
 
 const RoadmapsContainer = styled.div`
   text-align: center;
   padding: 20px;
- background:rgb(26, 36, 61);
   color: white;
 `;
 
@@ -47,7 +50,7 @@ const RoadmapTitle = styled.h3`
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #38bdf8;
+   color: #99A7F1;
 `;
 
 const RoadmapGrid = styled.div`
@@ -60,7 +63,7 @@ const RoadmapGrid = styled.div`
 
 const RoadmapCard = styled(Link)`
   display: block;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #99A7F1;
   padding: 15px;
   border-radius: 8px;
   text-align: center;
@@ -73,8 +76,8 @@ const RoadmapCard = styled(Link)`
   color: white;
 
   &:hover {
-    border-color: #38bdf8;
-    color: #38bdf8;
+    border-color:rgb(80, 105, 233);
+    color: rgb(80, 105, 233);
   }
 `;
 
@@ -111,27 +114,59 @@ const roleBasedRoadmaps = [
   "Technical Writer", "MLOps", "Product Manager", "Engineering Manager"
 ];
 
-const projectIdeas = ["Frontend", "Backend", "DevOps"];
-const bestPractices = ["Backend Performance" ,"Frontend Performance" ,"API Security" ,"Code Reviews" ,"AWS"];
-const questions = ["JavaScript" ,"Node.js","React","Backend","Frontend","Devops"];
+const sections = [
+  {
+    title: "Project Ideas",
+    items: ["Frontend", "Backend", "DevOps"],
+    linkPrefix: "/idea/",
+  },
+  {
+    title: "Best Practices",
+    items: ["Backend Performance", "Frontend Performance", "API Security", "Code Reviews", "AWS"],
+    linkPrefix: "/bestPractices/",
+  },
+  {
+    title: "Questions",
+    items: ["JavaScript", "Node.js", "React", "Backend", "Frontend", "DevOps"],
+    linkPrefix: "/questions/",
+  }
+];
+const sliderSettings = {
+  dots: true,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 1,  // Show 1 section at a time
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  arrows: false,
+};
+
+
 
 const Home: React.FC = () => {
+
+  const roleBasedRef = useRef<HTMLDivElement>(null);
+  const skillBasedRef = useRef<HTMLDivElement>(null);
   
   return (
     <HomeBackground>
-      <MyNavbar />
+      <MyNavbar
+      roleBasedRef={roleBasedRef as RefObject<HTMLDivElement>} 
+      skillBasedRef={skillBasedRef as RefObject<HTMLDivElement>} 
+       />
 
       <ContentSection>
         <Title>Developer Roadmaps</Title>
         <Description>
-          roadmap.sh is a collaborative platform designed to provide structured roadmaps, 
+           career path is a collaborative platform designed to provide structured roadmaps, 
           comprehensive guides, and curated learning resources. It empowers developers by 
           offering clear pathways to master various technologies, ensuring a well-defined 
           and effective learning journey.
         </Description>
       </ContentSection>
 
-      <RoadmapsContainer>
+      <RoadmapsContainer ref={roleBasedRef}>
         <RoadmapTitle>Role-based Roadmaps</RoadmapTitle>
         <RoadmapGrid>
           {roleBasedRoadmaps.map((roadmap, index) => (
@@ -144,7 +179,7 @@ const Home: React.FC = () => {
       </RoadmapsContainer>
 
       
-       <RoadmapsContainer>
+       <RoadmapsContainer ref={skillBasedRef}>
         <RoadmapTitle>Skill-based Roadmaps</RoadmapTitle>
         <RoadmapGrid>
           {skillBasedRoadmaps.map((roadmap, index) => (
@@ -156,40 +191,24 @@ const Home: React.FC = () => {
         <CreateRoadmapButton>+ Create your own Roadmap</CreateRoadmapButton>
       </RoadmapsContainer> 
 
-      <RoadmapsContainer style={{ marginTop: "5px" }}>
-        <RoadmapTitle>Project Ideas</RoadmapTitle>
-        <RoadmapGrid>
-          {projectIdeas.map((idea, index) => (
-            <RoadmapCard key={index} to={`/idea/${idea.toLowerCase().replace(/ /g, "-")}`}>
-              {idea}
-            </RoadmapCard>
-          ))}
-        </RoadmapGrid>
-      </RoadmapsContainer> 
+        {/* Best Practices Carousel */}
+        <Slider {...sliderSettings}>
+        {sections.map((section, index) => (
+          <RoadmapsContainer key={index}>
+            <RoadmapTitle>{section.title}</RoadmapTitle>
+            <RoadmapGrid>
+              {section.items.map((item, i) => (
+                <RoadmapCard key={i} to={`${section.linkPrefix}${item.toLowerCase().replace(/ /g, "-")}`}>
+                  {item}
+                </RoadmapCard>
+              ))}
+            </RoadmapGrid>
+          </RoadmapsContainer>
+        ))}
+      </Slider>
 
-      <RoadmapsContainer>
-        <RoadmapTitle>Best Practices</RoadmapTitle>
-        <RoadmapGrid>
-          {bestPractices.map((practices, index) => (
-            <RoadmapCard key={index} to={`/bestPractices/${practices.toLowerCase().replace(/ /g, "-")}`}>
-              {practices}
-            </RoadmapCard>
-          ))}
-        </RoadmapGrid>
-      </RoadmapsContainer> 
-
-      <RoadmapsContainer >
-        <RoadmapTitle>Questions</RoadmapTitle>
-        <RoadmapGrid>
-          {questions.map((questions, index) => (
-            <RoadmapCard key={index} to={`/questions/${questions.toLowerCase().replace(/ /g, "-")}`}>
-              {questions}
-            </RoadmapCard>
-          ))}
-        </RoadmapGrid>
-      </RoadmapsContainer> 
-      
-      
+      <Guides />
+      <Footer />
     </HomeBackground>
   );
 };

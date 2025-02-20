@@ -3,60 +3,96 @@ import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
+import Logo from "../assets/Logo.svg";
 
-// Styled Navbar with Glassmorphism Effect
 const StyledNavbar = styled(Navbar)`
-  width: 100%;  /* Ensure full width */
-  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  width: 100%;
+  background: black !important;
   backdrop-filter: blur(10px);
+  border-bottom: 0.5px solid white;
 `;
 
-const MyNavbar = () => {
+const FullWidthContainer = styled(Container)`
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 20px;
+`;
+
+const DropdownMenuStyles = styled.div`
+  .dropdown-menu {
+    background: black !important;
+    border: 1px solid white;
+  }
+  .dropdown-item {
+    color: white !important;
+  }
+  .dropdown-item:hover {
+    background: #222 !important;
+    color: #ddd !important;
+  }
+`;
+
+const LogoImage = styled.img`
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+`;
+
+interface NavbarProps {
+  roleBasedRef: React.RefObject<HTMLDivElement>;
+  skillBasedRef: React.RefObject<HTMLDivElement>;
+}
+
+const MyNavbar: React.FC<NavbarProps> = ({ roleBasedRef, skillBasedRef }) => {
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <StyledNavbar expand="lg">
-      <Container>
-        {/* Move the Brand to the Start */}
-        <Navbar.Brand as={Link} to="/" style={{ color: "linear-gradient(135deg, #667eea, #764ba2)", fontWeight: "bold" }}>
-          Career Guidance App
+      <FullWidthContainer>
+        <Navbar.Brand as={Link} to="/" style={{ display: "flex", alignItems: "center", color: "#fff" }}>
+          <LogoImage src={Logo} alt="Career Guidance Logo" />
         </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          {/* Align Links to the End */}
-          <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/" className="me-3" style={{ color: "#fff" }}>
-              Start Here
-            </Nav.Link>
-
-            {/* Roadmap Dropdown */}
-            <NavDropdown title="Roadmap" id="roadmap-dropdown" className="me-3">
-              <NavDropdown.Item as={Link} to="/roadmap/skill-based">Skill-Based</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/roadmap/role-based">Role-Based</NavDropdown.Item>
-            </NavDropdown>
-
-            <Nav.Link as={Link} to="/signin" className="me-3" style={{ color: "#fff" }}>
-              Sign In
-            </Nav.Link>
-            <Nav.Link as={Link} to="/signup" className="me-3" style={{ color: "#fff" }}>
-              Register
-            </Nav.Link>
-
-            {/* Menu Dropdown with Icon */}
+        <DropdownMenuStyles>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
             <NavDropdown
-              title={<FaBars size={20} style={{ color: "#fff", cursor: "pointer" }} />}
-              id="menu-dropdown"
-              align="end"
-            >
-              <NavDropdown.Item as={Link} to="/bookmarked-roadmaps">Bookmarked Roadmaps</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/best-practices">Best Practices</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/questions">Questions</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/project-ideas">Project Ideas</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/guides">Guides</NavDropdown.Item>
-            </NavDropdown>
+                title={<FaBars size={20} style={{ color: "#fff", cursor: "pointer" }} />}
+                id="menu-dropdown"
+              >
+                <NavDropdown.Item as={Link} to="/bookmarked-roadmaps">Bookmarked Roadmaps</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/best-practices">Best Practices</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/questions">Questions</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/project-ideas">Project Ideas</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/guides">Guides</NavDropdown.Item>
+              </NavDropdown>
 
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
+              <Nav.Link as={Link} to="/" className="me-3" style={{ color: "#fff" }}>
+                Start Here
+              </Nav.Link>
+              <NavDropdown title={<span style={{ color: "#fff" }}>Roadmap</span>} id="roadmap-dropdown" className="me-3">
+                <NavDropdown.Item onClick={() => scrollToSection(roleBasedRef)}>
+                  Role-Based Roadmaps
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => scrollToSection(skillBasedRef)}>
+                  Skill-Based Roadmaps
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              <Nav.Link as={Link} to="/signin" className="me-3" style={{ color: "#fff" }}>
+                Sign In
+              </Nav.Link>
+              <Nav.Link as={Link} to="/signup" className="me-3" style={{ color: "#fff" }}>
+                Register
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </DropdownMenuStyles>
+      </FullWidthContainer>
     </StyledNavbar>
   );
 };
