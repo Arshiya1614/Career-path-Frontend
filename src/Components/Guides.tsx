@@ -1,9 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import MyNavbar from "./Navbar";
+import Footer from "../Components/Footer";
+
+
+
 
 // Styled Components
 const GuidesContainer = styled.div`
   margin-top: 40px;
+  margin-bottom : 20px;
   padding: 20px;
   text-align: center;
   display: flex;
@@ -79,7 +85,7 @@ const guides = [
 
 const Guides: React.FC = () => {
   return (
-    <GuidesContainer>
+  <><MyNavbar /><GuidesContainer>
       <h2>Guides</h2>
       <GuideList>
         {guides.map((guide, index) => (
@@ -87,13 +93,16 @@ const Guides: React.FC = () => {
             <GuideTitle href={`/guides/${guide.title.toLowerCase().replace(/ /g, "-")}`}>
               {guide.title}
             </GuideTitle>
-            
+
             <Category>{guide.category}</Category>
           </GuideItem>
         ))}
       </GuideList>
-      <ViewAllButton href="/guides">View All Guides →</ViewAllButton>
     </GuidesContainer>
+    <Footer />
+
+    </>
+
   );
 };
 

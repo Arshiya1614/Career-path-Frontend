@@ -38,17 +38,9 @@ const LogoImage = styled.img`
   margin-right: 10px;
 `;
 
-interface NavbarProps {
-  roleBasedRef: React.RefObject<HTMLDivElement>;
-  skillBasedRef: React.RefObject<HTMLDivElement>;
-}
 
-const MyNavbar: React.FC<NavbarProps> = ({ roleBasedRef, skillBasedRef }) => {
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+
+const MyNavbar: React.FC = () => {
 
   return (
     <StyledNavbar expand="lg">
@@ -65,9 +57,9 @@ const MyNavbar: React.FC<NavbarProps> = ({ roleBasedRef, skillBasedRef }) => {
                 id="menu-dropdown"
               >
                 <NavDropdown.Item as={Link} to="/bookmarked-roadmaps">Bookmarked Roadmaps</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/best-practices">Best Practices</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/bestPractice">Best Practices</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/questions">Questions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/project-ideas">Project Ideas</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/projectIdeas">Project Ideas</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/guides">Guides</NavDropdown.Item>
               </NavDropdown>
 
@@ -75,10 +67,10 @@ const MyNavbar: React.FC<NavbarProps> = ({ roleBasedRef, skillBasedRef }) => {
                 Start Here
               </Nav.Link>
               <NavDropdown title={<span style={{ color: "#fff" }}>Roadmap</span>} id="roadmap-dropdown" className="me-3">
-                <NavDropdown.Item onClick={() => scrollToSection(roleBasedRef)}>
+                <NavDropdown.Item >
                   Role-Based Roadmaps
                 </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => scrollToSection(skillBasedRef)}>
+                <NavDropdown.Item >
                   Skill-Based Roadmaps
                 </NavDropdown.Item>
               </NavDropdown>
