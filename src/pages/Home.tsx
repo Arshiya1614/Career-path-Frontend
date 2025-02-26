@@ -11,7 +11,6 @@ const HomeBackground = styled.div`
   min-height: 100vh; /* Full screen height */
   background: black; /* Set background to black */
   color: white; /* Ensures all text is visible */
-  padding-bottom: 50px;
 `;
 
 const ContentSection = styled.div`
@@ -135,8 +134,6 @@ const GuideTitle = styled.a`
   }
 `;
 
-
-
 const Category = styled.span`
   color: #bbb;
   font-size: 14px;
@@ -218,8 +215,6 @@ const sliderSettings = {
 
 const Home: React.FC = () => {
 
- 
-  
   return (
     <HomeBackground>
       <MyNavbar />

@@ -47,8 +47,7 @@ const BottomSection = styled.div`
   flex-wrap: wrap;
   color: gray;
   font-size: 0.875rem;
-  margin-top: 2rem;
-  border-top: 1px solid gray;
+  margin-top: 1rem;
   padding: 1rem 0 0;
 `;
 

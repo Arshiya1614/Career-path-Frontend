@@ -137,6 +137,7 @@ const projectsData: { [key: string]: { title: string; description: string; level
     { title: "Log Archive Tool", description: "Build a tool to archive logs from the CLI with the date and time.", level: "Beginner", tag: "CLI", started: 703 },
     { title: "Nginx Log Analyser", description: "Write a simple tool to analyze logs from the command line.", level: "Beginner", tag: "CLI", started: 174 },
     { title: "GitHub Pages Deployment", description: "Write a GitHub Actions workflow to deploy a static website.", level: "Beginner", tag: "CI / CD", started: 181 },
+    { title: "GitHub Pages Deployment", description: "Write a GitHub Actions workflow to deploy a static website.", level: "Beginner", tag: "CI / CD", started: 181 },
   ],
   Frontend: [
     { title: "Portfolio Website", description: "Build a personal portfolio with animations.", level: "Intermediate", tag: "React", started: 1200 },

@@ -10,6 +10,7 @@ import BestPractice from "./pages/BestPractice";
 import ProjectIdeas from "./pages/ProjectIdeas";
 import BookMarkedRm from  "./pages/BookMarkedRM";
 import Questions from "./pages/Questions";
+import RoadMaps from "./pages/RoadMaps";
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path ="/projectIdeas" element={<ProjectIdeas/>} />
         <Route path ="/questions" element={<Questions/>} />
         <Route path ="/bookmarked-roadmaps" element={<BookMarkedRm/>} />
+        <Route path ="/roadmaps" element={<RoadMaps/>} />
 
 
 

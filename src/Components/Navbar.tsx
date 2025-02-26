@@ -63,17 +63,12 @@ const MyNavbar: React.FC = () => {
                 <NavDropdown.Item as={Link} to="/guides">Guides</NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link as={Link} to="/" className="me-3" style={{ color: "#fff" }}>
+              <Nav.Link as={Link} to="/startHere" className="me-3" style={{ color: "#fff" }}>
                 Start Here
               </Nav.Link>
-              <NavDropdown title={<span style={{ color: "#fff" }}>Roadmap</span>} id="roadmap-dropdown" className="me-3">
-                <NavDropdown.Item >
-                  Role-Based Roadmaps
-                </NavDropdown.Item>
-                <NavDropdown.Item >
-                  Skill-Based Roadmaps
-                </NavDropdown.Item>
-              </NavDropdown>
+              <Nav.Link as={Link} to="/roadmaps" className="me-3" style={{ color: "#fff" }}>
+                Roadmap
+              </Nav.Link>
 
               <Nav.Link as={Link} to="/signin" className="me-3" style={{ color: "#fff" }}>
                 Sign In

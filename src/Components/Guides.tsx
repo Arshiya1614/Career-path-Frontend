@@ -48,26 +48,13 @@ const GuideTitle = styled.a`
   }
 `;
 
-
-
 const Category = styled.span`
   color: #bbb;
   font-size: 14px;
   text-align: center;
 `;
 
-const ViewAllButton = styled.a`
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #000;
-  color: #fff;
-  border-radius: 5px;
-  text-decoration: none;
-  &:hover {
-    background: #333;
-  }
-`;
+
 
 const guides = [
   { title: "Data Science vs. Computer Science: Which Path to Choose", month: "February", category: "Textual" },
